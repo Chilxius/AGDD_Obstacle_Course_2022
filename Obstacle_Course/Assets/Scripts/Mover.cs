@@ -8,24 +8,28 @@ public class Mover : MonoBehaviour
     //[SerializeField] float yPosition = 0.01f;
     //[SerializeField] float zPosition = 0;
 
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float moveSpeed = 10f;
+
+    Rigidbody rb = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         Debug.Log("Move with WASD and dodge stuff.");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         MovePlayer();
     }
 
     void MovePlayer()
     {
-        float xPosition = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        float zPosition = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-        this.transform.Translate(xPosition, 0, zPosition);
+        float xMagnitude = Input.GetAxis("Horizontal") * moveSpeed;
+        float zMagnitude = Input.GetAxis("Vertical") * moveSpeed;
+        //this.transform.Translate(xPosition, 0, zPosition);
+        rb.velocity = new Vector3(xMagnitude, 0, zMagnitude);
     }
 }

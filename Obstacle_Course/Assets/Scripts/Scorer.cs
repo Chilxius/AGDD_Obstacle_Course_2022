@@ -11,7 +11,7 @@ public class Scorer : MonoBehaviour
         if (other.gameObject.tag != "Hit")
         {
             hits++;
-            Debug.Log($"{hits} hits!" + "\tCollided with " + other.gameObject.name);
+            Debug.Log($"{hits} hits!" + "    \tCollided with " + other.gameObject.name);
         }
     }
 }
